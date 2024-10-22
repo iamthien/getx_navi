@@ -24,12 +24,17 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Counter section
-            GetX<CountController>(
-              builder: (_) => Text(
-                'Clicks: ${controller.count}',
-                style: const TextStyle(fontSize: 24),
-              ),
-            ),
+            // GetX<CountController>(
+            //   builder: (_) => Text(
+            //     'Clicks: ${controller.count}',
+            //     style: const TextStyle(fontSize: 24),
+            //   ),
+            // ),
+
+            Obx(() => Text(
+                  "Clicks: ${controller.count}",
+                  style: const TextStyle(fontSize: 24),
+                )),
             ElevatedButton(
               child: const Text('Next Route'),
               onPressed: () {
@@ -38,13 +43,18 @@ class Home extends StatelessWidget {
             ),
 
             // Dice section
-            GetX<DiceController>(
-              builder: (_) => Image.asset(
-                "assets/dices/dice-${diceController.diceNum}.png",
-                height: 200,
-                width: 200,
-              ),
-            ),
+            // GetX<DiceController>(
+            //   builder: (_) => Image.asset(
+            //     "assets/dices/dice-${diceController.diceNum}.png",
+            //     height: 200,
+            //     width: 200,
+            //   ),
+            // ),
+            Obx(() => Image.asset(
+                  "assets/dices/dice-${diceController.diceNum}.png",
+                  height: 200,
+                  width: 200,
+                )),
             ElevatedButton(
               onPressed: () =>
                   diceController.random(), // Call the random function
