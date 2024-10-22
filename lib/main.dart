@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_navi/count_controller.dart';
+import 'package:getx_navi/sample_bind.dart';
 
 void main() {
   runApp(GetMaterialApp(
+    initialRoute: "/home",
+    getPages: [
+      GetPage(name: "/home", page: () => Home(), binding: SampleBind()),
+      GetPage(name: "/second", page: () => Second())
+    ],
     //Using GetMaterialApp instead of MaterialApp
     home: Home(),
   ));
@@ -35,7 +41,8 @@ class Home extends StatelessWidget {
             ElevatedButton(
               child: const Text('Next Route'),
               onPressed: () {
-                Get.to(Second());
+                // Get.to(Second());
+                Get.toNamed("/second");
               },
             ),
           ],
