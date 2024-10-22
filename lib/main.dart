@@ -21,10 +21,17 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //GetBuilder<Controller>( // Because using obs, we dont need to use GetBuilder. We can use only GetX
-            GetX<Controller>(
-                builder: (_) => Text(
-                      'clicks: ${controller.count}',
-                    )),
+            // GetBuilder<Controller>(
+            //     builder: (_) => Text(
+            //           'clicks: ${controller.count}',
+            //         )),
+            // GetX<Controller>(
+            //     builder: (_) => Text(
+            //           'clicks: ${controller.count}',
+            //         )),
+            Obx(() => Text(
+                  'clicks: ${controller.count}',
+                )),
             ElevatedButton(
               child: const Text('Next Route'),
               onPressed: () {
