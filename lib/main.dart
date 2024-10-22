@@ -1,52 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_navi/count_controller.dart';
+import 'package:getx_navi/dice_controller.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(GetMaterialApp(
+    // Use GetMaterialApp instead of MaterialApp
     home: Home(),
   ));
 }
 
 //Screen 1
 class Home extends StatelessWidget {
-  final controller = Get.put(Controller());
+  final controller = Get.put(CountController());
+  final diceController = Get.put(DiceController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("counter")),
+      appBar: AppBar(title: const Text("Counter & Dice")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GetBuilder<Controller>(
-                builder: (_) => Text(
-                      'clicks: ${controller.count}',
-                    )),
+            // Counter section
+            GetBuilder<CountController>(
+              builder: (_) => Text(
+                'Clicks: ${controller.count}',
+                style: const TextStyle(fontSize: 24),
+              ),
+            ),
             ElevatedButton(
-              child: Text('Next Route'),
+              child: const Text('Next Route'),
               onPressed: () {
-                Get.to(Second());
+                Get.to(Second()); // Navigate to the second screen
               },
+            ),
+
+            // Dice section
+            GetBuilder<DiceController>(
+              builder: (_) => Image.asset(
+                "assets/dices/dice-${diceController.diceNum}.png",
+                height: 200,
+                width: 200,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () =>
+                  diceController.random(), // Call the random function
+              child: const Text("Random Dice"),
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () =>
-            controller.increment(), // Use a function reference here
+            controller.increment(), // Function reference for increment
       ),
     );
   }
 }
 
 //Screen 2
-// Using Get.find() to retrieve the value of ctrl (Controller class -> where store count value)
 class Second extends StatelessWidget {
-  final Controller ctrl = Get.find();
+  final CountController ctrl = Get.find();
+
   @override
   Widget build(context) {
-    return Scaffold(body: Center(child: Text("${ctrl.count}")));
+    return Scaffold(
+      appBar: AppBar(title: const Text("Second Screen")),
+      body: Center(
+        child: Text(
+          "Count: ${ctrl.count}",
+          style: const TextStyle(fontSize: 24),
+        ),
+      ),
+    );
   }
 }
