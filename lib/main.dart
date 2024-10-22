@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:getx_navi/count_controller.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(GetMaterialApp(
     home: Home(),
   ));
 }
