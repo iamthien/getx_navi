@@ -4,6 +4,7 @@ import 'package:getx_navi/count_controller.dart';
 
 void main() {
   runApp(GetMaterialApp(
+    //Using GetMaterialApp instead of MaterialApp
     home: Home(),
   ));
 }
@@ -14,17 +15,18 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("counter")),
+      appBar: AppBar(title: const Text("counter")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GetBuilder<Controller>(
+            //GetBuilder<Controller>( // Because using obs, we dont need to use GetBuilder. We can use only GetX
+            GetX<Controller>(
                 builder: (_) => Text(
                       'clicks: ${controller.count}',
                     )),
             ElevatedButton(
-              child: Text('Next Route'),
+              child: const Text('Next Route'),
               onPressed: () {
                 Get.to(Second());
               },
@@ -33,7 +35,7 @@ class Home extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () =>
             controller.increment(), // Use a function reference here
       ),
