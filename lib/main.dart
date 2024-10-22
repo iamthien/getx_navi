@@ -24,7 +24,7 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Counter section
-            GetBuilder<CountController>(
+            GetX<CountController>(
               builder: (_) => Text(
                 'Clicks: ${controller.count}',
                 style: const TextStyle(fontSize: 24),
@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
             ),
 
             // Dice section
-            GetBuilder<DiceController>(
+            GetX<DiceController>(
               builder: (_) => Image.asset(
                 "assets/dices/dice-${diceController.diceNum}.png",
                 height: 200,
@@ -65,15 +65,30 @@ class Home extends StatelessWidget {
 //Screen 2
 class Second extends StatelessWidget {
   final CountController ctrl = Get.find();
+  final DiceController diceCtrl = Get.find();
 
   @override
   Widget build(context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Second Screen")),
       body: Center(
-        child: Text(
-          "Count: ${ctrl.count}",
-          style: const TextStyle(fontSize: 24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Count: ${ctrl.count}",
+              style: const TextStyle(fontSize: 24),
+            ),
+            Text(
+              "Dice: ${diceCtrl.diceNum}",
+              style: const TextStyle(fontSize: 24),
+            ),
+            Image.asset(
+              "assets/dices/dice-${diceCtrl.diceNum}.png",
+              height: 200,
+              width: 200,
+            )
+          ],
         ),
       ),
     );
