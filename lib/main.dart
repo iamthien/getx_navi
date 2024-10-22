@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_navi/app_binding.dart';
 import 'package:getx_navi/count_controller.dart';
 import 'package:getx_navi/dice_controller.dart';
+import 'package:getx_navi/routes/app_pages.dart';
+import 'routes/app_routes.dart';
 
 void main() {
   runApp(GetMaterialApp(
+    initialRoute: AppRoute.homeScreen,
+    getPages: AppPages.pages,
+    initialBinding: AppBinding(),
     // Use GetMaterialApp instead of MaterialApp
     home: Home(),
   ));
